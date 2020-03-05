@@ -26,11 +26,9 @@ def query_interfaces():
 
 
 def parse_wifi_params(query):
-    wlans = re.split("^\n\n", query, flags=re.MULTILINE)
-    wlans = wlans[23]
     wlans = map(lambda x: x[0],
                 re.findall("(^SSID(.|\n)+?(?=\n^\n))+?",
-                           wlans,
+                           query,
                            flags=re.MULTILINE))
     wxs = []
     for wlan in wlans:
